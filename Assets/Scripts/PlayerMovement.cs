@@ -1,0 +1,61 @@
+using System;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public float conSpeed = 5, horSpeed = 5;
+    public Rigidbody rb;
+    public LayerMask inputLayer;
+    
+    private bool hitObstacle = false;
+    private Camera cam;
+    private Vector3 movePos;
+    private Vector3 inputPos;
+    private float curSpeed;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = transform.GetComponentInChildren<Animator>();
+        cam = Camera.main;
+    }
+
+    private Vector3 smoothVelo;
+    public float smoothTime = 0.5f;
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movePos * Time.deltaTime);
+    }
+
+    private float smoothSpeedVelo;
+
+    void Update()
+    {
+        TakeInput();
+        curSpeed = Mathf.SmoothDamp(curSpeed, conSpeed, ref smoothSpeedVelo, .7f);
+    }
+
+    private void TakeInput()
+    {
+        bool mousePressed = Input.GetMouseButton(0);
+        if (mousePressed)
+        {
+            RaycastHit hit;
+            Ray camRay = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(camRay, out hit, 25f, inputLayer))
+            {
+                inputPos = hit.point;
+                inputPos = new Vector3(inputPos.x * horSpeed, 0f, curSpeed);
+            }
+        }
+        movePos = Vector3.SmoothDamp(transform.position, inputPos, ref smoothVelo, smoothTime);
+        movePos = inputPos - new Vector3(transform.position.x,0, 0);
+    }
+
+    public void HitObstacle(float slowSpeed)
+    {
+        animator.SetTrigger("TakeDamage");
+        curSpeed = slowSpeed;
+    }
+}
