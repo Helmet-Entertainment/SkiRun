@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
+    public int scorePenalty = 200;
     public float slowDownSpeed = 1f;
     private PlayerMovement playerMovement;
     
@@ -15,7 +16,7 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerMovement.HitObstacle(slowDownSpeed);
+        playerMovement.HitObstacle(slowDownSpeed, scorePenalty);
         this.enabled = false;
     }
 }

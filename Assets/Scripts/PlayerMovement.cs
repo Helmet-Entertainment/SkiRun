@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody rb;
     public LayerMask inputLayer;
     
-    private bool hitObstacle = false;
     private Camera cam;
     private Vector3 movePos;
     private Vector3 inputPos;
@@ -53,8 +52,17 @@ public class PlayerMovement : MonoBehaviour
         movePos = inputPos - new Vector3(transform.position.x,0, 0);
     }
 
-    public void HitObstacle(float slowSpeed)
+    public void HitObstacle(float slowSpeed, int penalty)
     {
+        int score = UIManager.instance.theScore;
+        score -= penalty;
+        if (score < 0)
+        {
+            score = 0;
+        }
+
+        UIManager.instance.theScore = score;
+        UIManager.instance.UpdateScore();
         animator.SetTrigger("TakeDamage");
         curSpeed = slowSpeed;
     }
