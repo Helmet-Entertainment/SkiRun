@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreText;
     public static UIManager instance;
     public int theScore;
-    // Start is called before the first frame update
+   
     private void Awake()
     {
         instance = this;
@@ -17,6 +17,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateScore()
     {
-        scoreText.text = "Score: " + theScore;
+        scoreText.text = "Fans: " + theScore;
     }
 }
