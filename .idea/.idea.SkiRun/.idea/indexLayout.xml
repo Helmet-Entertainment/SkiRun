@@ -3,6 +3,7 @@
   <component name="ContentModelUserStore">
     <attachedFolders />
     <explicitIncludes>
+      <Path>Library/PackageCache/com.unity.cinemachine@2.6.11</Path>
       <Path>Library/PackageCache/com.unity.collab-proxy@1.5.7</Path>
       <Path>Library/PackageCache/com.unity.device-simulator@3.0.3-preview</Path>
       <Path>Library/PackageCache/com.unity.ext.nunit@1.0.6</Path>
