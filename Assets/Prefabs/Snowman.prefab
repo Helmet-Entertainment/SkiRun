@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5493264873074214553}
   - component: {fileID: 8904782879502321980}
   - component: {fileID: 6661056466535300598}
-  - component: {fileID: 5454217800773691659}
   - component: {fileID: 5454217800773691702}
+  - component: {fileID: 8639886028076938841}
   m_Layer: 8
   m_Name: Snowman
   m_TagString: Untagged
@@ -86,19 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5454217800773691659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5147667016190532643}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.36907256, y: 0.75172645, z: 0.59674895}
-  m_Center: {x: -0.0060940846, y: 0.35914132, z: 0.0015095178}
 --- !u!114 &5454217800773691702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +100,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scorePenalty: 200
   slowDownSpeed: 7
+--- !u!136 &8639886028076938841
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147667016190532643}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.2
+  m_Height: 0.75172645
+  m_Direction: 1
+  m_Center: {x: -0.006094083, y: 0.35914132, z: 0.0015095175}

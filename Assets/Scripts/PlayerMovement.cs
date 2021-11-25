@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void TakeInput()
     {
+        //movePos = transform.forward * curSpeed;
         bool mousePressed = Input.GetMouseButton(0);
         if (mousePressed)
         {
@@ -45,11 +46,12 @@ public class PlayerMovement : MonoBehaviour
             if (Physics.Raycast(camRay, out hit, 25f, inputLayer))
             {
                 inputPos = hit.point;
-                inputPos = new Vector3(inputPos.x * horSpeed, 0f, curSpeed);
+                inputPos = new Vector3(inputPos.x * horSpeed, 0, 0);
+                //movePos = new Vector3(inputPos.x,movePos.y,movePos.z);
             }
         }
-        movePos = Vector3.SmoothDamp(transform.position, inputPos, ref smoothVelo, smoothTime);
-        movePos = inputPos - new Vector3(transform.position.x,0, 0);
+        //movePos = Vector3.SmoothDamp(transform.position, inputPos, ref smoothVelo, smoothTime);
+        movePos = inputPos - new Vector3(transform.position.x,0, 0) + transform.forward * curSpeed;
     }
 
     public void HitObstacle(float slowSpeed, int penalty)
