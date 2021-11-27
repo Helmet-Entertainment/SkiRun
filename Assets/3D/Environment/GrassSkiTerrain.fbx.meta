@@ -3,7 +3,22 @@ guid: 331cedb71983c014cba00eb44440b1b1
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 4ea8748d43d980b42a6c4396f84a2362, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pine_Leaves
+    second: {fileID: 2100000, guid: 40a85337e91cefb4daf0b9dea714eee4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: landscape
+    second: {fileID: 2100000, guid: f847fe3302df5ef4692ce8c9f6fc7cf7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
