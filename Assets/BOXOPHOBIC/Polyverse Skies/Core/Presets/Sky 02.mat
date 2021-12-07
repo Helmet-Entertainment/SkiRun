@@ -227,7 +227,7 @@ Material:
     - _SkyPatternContrast: 0.477
     - _SkyPatternOverlay: 0
     - _SkyboxCat: 1
-    - _SkyboxRotation: 0.07
+    - _SkyboxRotation: 0.037
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
