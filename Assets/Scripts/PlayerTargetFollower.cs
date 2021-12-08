@@ -122,6 +122,7 @@ public class PlayerTargetFollower : MonoBehaviour
         }
         //Takla ile geçiş
         playerAnimator.SetTrigger("Flip");
+        FindObjectOfType<UIManager>().EnableWinPanel();
         RotatePlayerToFloor();
         winCam.Priority = 13;
         winParticle.Play();

@@ -12,7 +12,6 @@ public class Collectable : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         UIManager.instance.theScore += 50;
-        UIManager.instance.UpdateScore();
         Destroy(gameObject);
         
     }

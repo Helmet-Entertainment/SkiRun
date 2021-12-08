@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         UIManager.instance.theScore = score;
-        UIManager.instance.UpdateScore();
         animator.SetTrigger("TakeDamage");
         curSpeed = slowSpeed;
     }

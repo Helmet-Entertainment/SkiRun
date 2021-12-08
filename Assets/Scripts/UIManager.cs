@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -10,6 +11,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text scoreText;
     public static UIManager instance;
     public int theScore;
+    public Image sliderImage;
+    public GameObject winPanel, startPanel;
 
     [SerializeField] private Image uiProgressFill;
     [SerializeField] private Transform playerTransform;
@@ -21,6 +24,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        Time.timeScale = 0;
+        startPanel.SetActive(true);
     }
 
     private void Start()
@@ -46,12 +51,22 @@ public class UIManager : MonoBehaviour
 
     private void UpdateProgressFill(float value)
     {
-        uiProgressFill.fillAmount = value;
+        uiProgressFill.fillAmount = value + 0.01f;
+        sliderImage.color = Color.Lerp(Color.red, Color.green, value + 0.01f);
     }
     
-    public void UpdateScore()
+    public void StartGame()
     {
-        scoreText.text = "Fans: " + theScore;
+        Time.timeScale = 1;
     }
-    
+
+    public void WinGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void EnableWinPanel()
+    {
+        winPanel.SetActive(true);
+    }
 }

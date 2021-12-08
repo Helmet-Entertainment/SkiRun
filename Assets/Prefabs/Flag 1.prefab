@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 4762835637610270481}
   - component: {fileID: 6186090354508139964}
   - component: {fileID: 919132148916289726}
+  - component: {fileID: 8798012986005785635}
   m_Layer: 0
   m_Name: Flag 1
   m_TagString: Flag
@@ -403,3 +404,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8798012986005785635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6419883155011628740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3dc142e6cdfc348a0b6dca89dc025e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flagImage: {fileID: 0}
