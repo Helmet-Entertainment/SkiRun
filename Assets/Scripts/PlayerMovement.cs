@@ -33,18 +33,4 @@ public class PlayerMovement : MonoBehaviour
         movePos = transform.forward * curSpeed;
         curSpeed = Mathf.SmoothDamp(curSpeed, conSpeed, ref smoothSpeedVelo, .7f);
     }
-
-    public void HitObstacle(float slowSpeed, int penalty)
-    {
-        int score = UIManager.instance.theScore;
-        score -= penalty;
-        if (score < 0)
-        {
-            score = 0;
-        }
-
-        UIManager.instance.theScore = score;
-        animator.SetTrigger("TakeDamage");
-        curSpeed = slowSpeed;
-    }
 }

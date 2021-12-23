@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    public int scorePenalty = 200;
-    public float slowDownSpeed = 1f;
-    private PlayerMovement playerMovement;
+    private PlayerTargetFollower playerMovement;
     
     void Start()
     {
-        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        playerMovement = FindObjectOfType<PlayerTargetFollower>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        playerMovement.HitObstacle(slowDownSpeed, scorePenalty);
+        playerMovement.HitObstacle();
         this.enabled = false;
     }
 }

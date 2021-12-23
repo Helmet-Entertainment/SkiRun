@@ -89,6 +89,12 @@ public class PlayerTargetFollower : MonoBehaviour
         var transposer = followCam.GetCinemachineComponent<CinemachineTransposer>();
         StartCoroutine(SlowDownLerp(transposer, new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y - 2, transposer.m_FollowOffset.z + 2.5f),agent.speed, agent.speed+5));
     }
+    
+    public void HitObstacle()
+    { 
+        playerAnimator.SetTrigger("TakeDamage");
+        SlowDown();
+    }
 
 
     [ContextMenu("Jump")]
@@ -143,6 +149,16 @@ public class PlayerTargetFollower : MonoBehaviour
     
     IEnumerator SlowDownLerp(CinemachineTransposer transposer,Vector3 newOffset, float oldSpeed, float newSpeed)
     {
+        if (oldSpeed <= 25)
+        {
+            oldSpeed = 25f;
+        }
+
+        if (newOffset.y < 5 || newOffset.z > -5.72f)
+        {
+            newOffset.y = 5;
+            newOffset.z = -5.72f;
+        }
         float elapsedTime = 0f;
         while (elapsedTime < 1)
         {
