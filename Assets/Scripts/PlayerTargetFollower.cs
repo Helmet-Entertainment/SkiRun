@@ -10,10 +10,8 @@ using UnityEngine.AI;
 public class PlayerTargetFollower : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private NavMeshAgent targetAgent;
     private Animator playerAnimator;
     private int flagCount = 0;
-    [SerializeField] private Transform target;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Transform playerGraphic;
     [SerializeField] private CinemachineVirtualCamera followCam;
@@ -22,13 +20,12 @@ public class PlayerTargetFollower : MonoBehaviour
     [SerializeField] private ParticleSystem leaf1, leaf2;
     [SerializeField] private CinemachineVirtualCamera winCam;
     [SerializeField] private ParticleSystem winParticle;
-    private float velocity = 20f;
     private Dictionary<string,Vector3> jumpPositions = new Dictionary<string, Vector3>();
     private bool hasFinished;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        targetAgent = target.GetComponent<NavMeshAgent>();
+        //targetAgent = target.GetComponent<NavMeshAgent>();
         multiSet.enabled = false;
         playerAnimator = transform.GetChild(0).GetComponent<Animator>();
     }
@@ -39,7 +36,8 @@ public class PlayerTargetFollower : MonoBehaviour
         {
             return;
         }
-        agent.destination = target.position;
+        Vector3 targetPos = transform.position + Vector3.forward;
+        agent.destination = targetPos;
         RotatePlayerToFloor();
     }
 
@@ -56,6 +54,10 @@ public class PlayerTargetFollower : MonoBehaviour
         }
     }
 
+    public void UpdateLookRotation()
+    {
+        
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Flag"))
@@ -79,7 +81,10 @@ public class PlayerTargetFollower : MonoBehaviour
     private void SpeedUp()
     {
         var transposer = followCam.GetCinemachineComponent<CinemachineTransposer>();
-        StartCoroutine(SpeedUpLerp(transposer,new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y + 2, transposer.m_FollowOffset.z - 2.5f),agent.speed, agent.speed+5));
+        StartCoroutine(SpeedUpLerp(transposer,
+            new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y + 2, transposer.m_FollowOffset.z - 2.5f),
+            agent.speed,
+            agent.speed + 5));
         
     }
 
@@ -87,7 +92,10 @@ public class PlayerTargetFollower : MonoBehaviour
     private void SlowDown()
     {
         var transposer = followCam.GetCinemachineComponent<CinemachineTransposer>();
-        StartCoroutine(SlowDownLerp(transposer, new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y - 2, transposer.m_FollowOffset.z + 2.5f),agent.speed, agent.speed+5));
+        StartCoroutine(SlowDownLerp(transposer,
+            new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y - 2, transposer.m_FollowOffset.z + 2.5f),
+            agent.speed,
+            agent.speed - 5));
     }
     
     public void HitObstacle()
@@ -124,9 +132,10 @@ public class PlayerTargetFollower : MonoBehaviour
         while (elapsedTime < time-0.3f)
         {
             elapsedTime += Time.deltaTime;
+            this.transform.rotation = Quaternion.Euler(0,0,0);
             yield return new WaitForEndOfFrame();
         }
-        //Takla ile geçiş
+        
         playerAnimator.SetTrigger("Flip");
         FindObjectOfType<UIManager>().EnableWinPanel();
         RotatePlayerToFloor();
@@ -141,7 +150,7 @@ public class PlayerTargetFollower : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             agent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
-            targetAgent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
+            //targetAgent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
             transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset,newOffset, elapsedTime);
             yield return new WaitForEndOfFrame();
         }
@@ -164,7 +173,7 @@ public class PlayerTargetFollower : MonoBehaviour
         {
             elapsedTime += Time.deltaTime/2;
             agent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
-            targetAgent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
+            //targetAgent.speed = Mathf.Lerp(oldSpeed,newSpeed, elapsedTime*2);
             transposer.m_FollowOffset = Vector3.Lerp(transposer.m_FollowOffset,newOffset, elapsedTime);
             yield return new WaitForEndOfFrame();
         }
