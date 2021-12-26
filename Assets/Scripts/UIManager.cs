@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public int theScore;
     public Image sliderImage;
-    public GameObject winPanel, startPanel;
+    public GameObject winPanel, startPanel, losePanel;
 
     [SerializeField] private Image uiProgressFill;
     [SerializeField] private Transform playerTransform;
@@ -65,8 +65,18 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void LoseGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void EnableWinPanel()
     {
         winPanel.SetActive(true);
+    }
+
+    public void EnableLosePanel()
+    {
+       losePanel.SetActive(true);
     }
 }

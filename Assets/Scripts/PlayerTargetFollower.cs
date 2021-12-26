@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
 using Lean.Touch;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -100,8 +101,8 @@ public class PlayerTargetFollower : MonoBehaviour
     
     public void HitObstacle()
     { 
-        playerAnimator.SetTrigger("TakeDamage");
-        SlowDown();
+        //playerAnimator.SetTrigger("TakeDamage");
+        Fail();
     }
 
 
@@ -126,6 +127,36 @@ public class PlayerTargetFollower : MonoBehaviour
         jumpPositions.Add(xCount,position);
     }
 
+    private void Fail()
+    {
+        if (!hasFinished)
+        {
+            hasFinished = true;
+            agent.destination = transform.position;
+            playerAnimator.SetTrigger("FailStone");
+            FindObjectOfType<UIManager>().EnableLosePanel();
+            agent.enabled = false;
+            GetComponent<LeanMultiSet>().enabled = false;
+            this.enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            StartCoroutine(RotatePlayer());
+            leaf1.Stop();
+            leaf2.Stop();
+        }
+    }
+
+    IEnumerator RotatePlayer()
+    {
+        float elapsedtime = 0f;
+        while (elapsedtime<1f)
+        {
+            elapsedtime += Time.deltaTime;
+            transform.rotation=Quaternion.Lerp(transform.rotation,Quaternion.Euler(45,0,0), elapsedtime);
+            yield return new WaitForEndOfFrame();
+        }
+        
+    }
+    
     IEnumerator WaitForJump(float time)
     {
         float elapsedTime = 0f;
@@ -142,7 +173,7 @@ public class PlayerTargetFollower : MonoBehaviour
         winCam.Priority = 13;
         winParticle.Play();
     }
-    
+
     IEnumerator SpeedUpLerp(CinemachineTransposer transposer,Vector3 newOffset, float oldSpeed, float newSpeed)
     {
         float elapsedTime = 0f;
