@@ -11,8 +11,9 @@ using UnityEngine.AI;
 public class PlayerTargetFollower : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private Animator playerAnimator;
+    [SerializeField] private Animator playerAnimator;
     private int flagCount = 0;
+    [SerializeField] private Transform target;
     [SerializeField] private LayerMask groundLayerMask;
     [SerializeField] private Transform playerGraphic;
     [SerializeField] private CinemachineVirtualCamera followCam;
@@ -21,14 +22,13 @@ public class PlayerTargetFollower : MonoBehaviour
     [SerializeField] private ParticleSystem leaf1, leaf2;
     [SerializeField] private CinemachineVirtualCamera winCam;
     [SerializeField] private ParticleSystem winParticle;
+    [SerializeField] private Vector3 directionA;
     private Dictionary<string,Vector3> jumpPositions = new Dictionary<string, Vector3>();
     private bool hasFinished;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //targetAgent = target.GetComponent<NavMeshAgent>();
         multiSet.enabled = false;
-        playerAnimator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     private void Update()
@@ -37,9 +37,12 @@ public class PlayerTargetFollower : MonoBehaviour
         {
             return;
         }
-        Vector3 targetPos = transform.position + Vector3.forward;
+        //Vector3 targetPos = ((transform.position + Vector3.forward) + target.position);
+        Vector3 targetPos = target.position;
         agent.destination = targetPos;
+        DrawLine(agent.destination);
         RotatePlayerToFloor();
+        UpdateLookRotation();
     }
 
     private void RotatePlayerToFloor()
@@ -55,9 +58,18 @@ public class PlayerTargetFollower : MonoBehaviour
         }
     }
 
+
+    private void DrawLine(Vector3 endPos)
+    {
+        Debug.DrawLine(transform.position,endPos,Color.black,20f);
+    }
     public void UpdateLookRotation()
     {
-        
+        var rotation = playerGraphic.rotation;
+        playerGraphic.LookAt(agent.destination);
+        var rotationForY = playerGraphic.rotation;
+        rotation.y = rotationForY.y;
+        playerGraphic.rotation = rotation;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -86,7 +98,6 @@ public class PlayerTargetFollower : MonoBehaviour
             new Vector3(transposer.m_FollowOffset.x, transposer.m_FollowOffset.y + 2, transposer.m_FollowOffset.z - 2.5f),
             agent.speed,
             agent.speed + 5));
-        
     }
 
     [ContextMenu("Slow")]
@@ -136,7 +147,6 @@ public class PlayerTargetFollower : MonoBehaviour
             playerAnimator.SetTrigger("FailStone");
             FindObjectOfType<UIManager>().EnableLosePanel();
             agent.enabled = false;
-            GetComponent<LeanMultiSet>().enabled = false;
             this.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
             StartCoroutine(RotatePlayer());

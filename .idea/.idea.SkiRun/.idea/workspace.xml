@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -20,43 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b7c81cf-7e7c-48fd-b2f3-99f0fcee2b28" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/.idea.SkiRun.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/contentModel.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SkiRun/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3D/Characters/PlayerAC.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3D/Characters/PlayerAC.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/3D/Environment/GrassSkiTerrain2.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/3D/Environment/GrassSkiTerrain2.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Win.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Win.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BOXOPHOBIC/Polyverse Skies/Core/Presets/Sky 02.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BOXOPHOBIC/Polyverse Skies/Core/Presets/Sky 02.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Materials.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Materials/Misc.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Materials/Misc/Unsorted.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Materials/Misc/Unsorted/leaf_3x3_AB.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Materials/Misc/Unsorted/leaf_3x3_AB.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs/Environment.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs/Environment/Weather.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs/Environment/Weather/Wind &amp; Leaves.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs/Environment/Weather/Wind &amp; Leaves/BlowingLeaves.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Prefabs/Environment/Weather/Wind &amp; Leaves/BlowingLeaves.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Textures/leaf_3x3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/Epic Toon FX/Textures/leaf_3x3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/FX_Rain_01.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/FX_Rain_01.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/PolygonParticleFX_Circle.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/PolygonParticleFX_Circle.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/PolygonParticles_Circle_01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Particle Folders/StormFx/PolygonParticles_Circle_01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SkiRun/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/JMO Assets/Toony Colors Pro/Demo TCP2/Cat Demo URP.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/DOTweenSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1/NavMesh.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1/NavMesh.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1/NavMesh.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 1/NavMesh.asset.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerTargetFollower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerTargetFollower.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TargetMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TargetMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/ApiUpdaterCheck.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +48,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Lean/Touch+/Scripts/LeanManualTranslate.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/XObjects.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TargetMovement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerTargetFollower.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Lean/Touch+/Scripts/LeanManualTranslate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/127e81e1cb3441cc97d26b1910daae7713b000/ff/17a15bd0/Transform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/XObjects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TargetMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerMovement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/127e81e1cb3441cc97d26b1910daae7713b000/f6/eff4aa42/Mathf.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -85,6 +68,9 @@
       </list>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21H1NjZRWXV8CzyjPbiXN9qXk66" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -96,6 +82,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -104,8 +91,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -113,8 +101,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -136,12 +125,16 @@
       <workItem from="1638216681512" duration="2598000" />
       <workItem from="1638818989395" duration="9214000" />
       <workItem from="1640291189702" duration="822000" />
+      <workItem from="1641587874202" duration="1564000" />
+      <workItem from="1641737600564" duration="3690000" />
+      <workItem from="1641748898378" duration="3100000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -154,7 +147,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
