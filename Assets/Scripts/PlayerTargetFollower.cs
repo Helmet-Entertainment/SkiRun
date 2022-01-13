@@ -61,12 +61,12 @@ public class PlayerTargetFollower : MonoBehaviour
 
     private void DrawLine(Vector3 endPos)
     {
-        Debug.DrawLine(transform.position,endPos,Color.black,20f);
+        //Debug.DrawLine(transform.position,endPos,Color.black,20f);
     }
     public void UpdateLookRotation()
     {
         var rotation = playerGraphic.rotation;
-        playerGraphic.LookAt(agent.destination);
+        playerGraphic.LookAt(target.position);
         var rotationForY = playerGraphic.rotation;
         rotation.y = rotationForY.y;
         playerGraphic.rotation = rotation;
@@ -111,8 +111,11 @@ public class PlayerTargetFollower : MonoBehaviour
     }
     
     public void HitObstacle()
-    { 
-        //playerAnimator.SetTrigger("TakeDamage");
+    {
+        if (agent)
+        {
+            agent.destination = transform.position;
+        }
         Fail();
     }
 
@@ -149,19 +152,19 @@ public class PlayerTargetFollower : MonoBehaviour
             agent.enabled = false;
             this.enabled = false;
             GetComponent<Rigidbody>().isKinematic = true;
-            StartCoroutine(RotatePlayer());
+            StartCoroutine(RotatePlayer(playerGraphic));
             leaf1.Stop();
             leaf2.Stop();
         }
     }
 
-    IEnumerator RotatePlayer()
+    IEnumerator RotatePlayer(Transform graphic)
     {
         float elapsedtime = 0f;
         while (elapsedtime<1f)
         {
             elapsedtime += Time.deltaTime;
-            transform.rotation=Quaternion.Lerp(transform.rotation,Quaternion.Euler(45,0,0), elapsedtime);
+            graphic.rotation=Quaternion.Lerp(transform.rotation,Quaternion.Euler(45,0,0), elapsedtime);
             yield return new WaitForEndOfFrame();
         }
         
