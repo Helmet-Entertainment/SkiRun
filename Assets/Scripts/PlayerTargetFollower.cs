@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Cinemachine;
 using DG.Tweening;
 using Lean.Touch;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
