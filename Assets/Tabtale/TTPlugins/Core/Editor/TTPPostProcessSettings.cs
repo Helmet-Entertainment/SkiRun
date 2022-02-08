@@ -106,7 +106,7 @@ namespace Tabtale.TTPlugins
 
             rootDict.SetBoolean("GOOGLE_ANALYTICS_DEFAULT_ALLOW_AD_PERSONALIZATION_SIGNALS", false);
             rootDict.SetBoolean("FIREBASE_ANALYTICS_COLLECTION_ENABLED", false);
-            
+            rootDict.SetBoolean("CADisableMinimumFrameDurationOnPhone", true);
             
             // Add AppLovinSdkKey
             if (Application.identifier == "com.tabtaleint.ttplugins" ||

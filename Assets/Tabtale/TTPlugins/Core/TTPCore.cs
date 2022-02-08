@@ -43,7 +43,7 @@ namespace Tabtale.TTPlugins {
         {
             get
             {
-#if TTP_DEV_MODE
+#if TTP_DEV_MODE && UNITY_EDITOR
                 return true;
 #else
                 return false;
@@ -143,12 +143,20 @@ namespace Tabtale.TTPlugins {
                 {
                     if (ShouldAskForIDFA())
                     {
-                        Debug.Log("TTPCore::Setup: disclaimer started");
-                        ATTDisclaimer.GetInstance().StartDisclaimer(() =>
+                        if (ShouldShowATTDisclaimer())
                         {
-                            Debug.Log("TTPCore::Setup: disclaimer finished");
+                            Debug.Log("TTPCore::Setup: disclaimer started");
+                            ATTDisclaimer.GetInstance().StartDisclaimer(() =>
+                            {
+                                Debug.Log("TTPCore::Setup: disclaimer finished");
+                                AskForIDFA();
+                            });
+                        }
+                        else
+                        {
+                            Debug.Log("TTPCore::Setup: ask for IDFA");
                             AskForIDFA();
-                        });
+                        }
                     }
                     else 
                     {
@@ -160,6 +168,9 @@ namespace Tabtale.TTPlugins {
                 InitBilling();
 #if TTP_UNITY_NATIVE_ADS
                 InitUnityNativeAds();
+#endif
+#if TTP_GAMEPROGRESSION
+                InitGameProgression();
 #endif
                 _initialized = true;
             }
@@ -265,6 +276,21 @@ namespace Tabtale.TTPlugins {
             return false;
         }
 
+        private static bool ShouldShowATTDisclaimer()
+        {
+            bool result = false;
+
+#if UNITY_IOS && !TTP_DEV_MODE
+            result = true;  // default value for case if iosImpl == null for some reason
+            var iosImpl = Impl as IosImpl;
+            if (iosImpl != null)
+            {
+                result = iosImpl.ShouldShowATTDisclaimer();
+            }
+#endif
+            return result;
+        }
+
         /// <summary>
         /// Initialize billing service
         /// </summary>
@@ -333,6 +359,30 @@ namespace Tabtale.TTPlugins {
             else
             {
                 Debug.Log("TTPCore::InitUnityNativeAds: TTPUnityNativeAds not found");
+            }
+        }
+#endif
+
+#if TTP_GAMEPROGRESSION
+        private static void InitGameProgression()
+        {
+            Debug.Log("TTPCore::InitGameProgression:");
+            System.Type unityNativeAds = System.Type.GetType("Tabtale.TTPlugins.TTPGameProgression");
+            if (unityNativeAds != null)
+            {
+                MethodInfo method = unityNativeAds.GetMethod("InternalInit", BindingFlags.NonPublic | BindingFlags.Static);
+                if (method != null)
+                {
+                    method.Invoke(null, null);
+                }
+                else
+                {
+                    Debug.LogWarning("TTPCore::InitGameProgression: method InternalInit not found");
+                }
+            }
+            else
+            {
+                Debug.Log("TTPCore::InitGameProgression: TTPGameProgression not found");
             }
         }
 #endif
@@ -415,6 +465,9 @@ namespace Tabtale.TTPlugins {
 
             [DllImport("__Internal")]
             private static extern bool ttpShouldWaitForIDFA();
+            
+            [DllImport("__Internal")]
+            private static extern bool ttpShouldShowATTDisclaimer();
 
             [DllImport("__Internal")]
             private static extern bool ttpIsRemoteConfigExistAndEnabled();
@@ -476,6 +529,11 @@ namespace Tabtale.TTPlugins {
             public bool ShouldWaitForIDFA()
             {
                 return ttpShouldWaitForIDFA();
+            }
+
+            public bool ShouldShowATTDisclaimer()
+            {
+                return ttpShouldShowATTDisclaimer();
             }
 
             public bool IsRemoteConfigExistAndEnabled()

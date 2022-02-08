@@ -788,7 +788,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 83970832}
-  m_LocalRotation: {x: -1.2564957e-10, y: 0.99997216, z: 0.007461988, w: 0.000000016838149}
+  m_LocalRotation: {x: 1.2842548e-10, y: 0.99997216, z: 0.0074620065, w: -0.000000017210102}
   m_LocalPosition: {x: 1.7, y: 26.554, z: -54.633}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1719,7 +1719,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292289273}
-  m_LocalRotation: {x: 0.35149482, y: -0.000000021946722, z: 0.000000008239953, w: 0.9361899}
+  m_LocalRotation: {x: 0.35149482, y: -0.000000022780773, z: 0.000000008553097, w: 0.9361899}
   m_LocalPosition: {x: 1.7, y: 31.039001, z: -64.424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3508,7 +3508,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &705507995
@@ -4837,6 +4836,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4909,6 +4909,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33483ba80b21a424f8c62d62ead575b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5025,7 +5037,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
 --- !u!223 &976686304
 Canvas:
   m_ObjectHideFlags: 0
@@ -5660,7 +5671,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -6409,7 +6419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -9617,7 +9626,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -69223,6 +69231,26 @@ PrefabInstance:
     - target: {fileID: 5932315051079447678, guid: 806136112da509342a227827edf28cd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 1.1405838
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 0.00000031022478
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 0.89844406
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.2841718
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.000000078127975
       objectReference: {fileID: 0}
     - target: {fileID: 6186090353761724618, guid: 806136112da509342a227827edf28cd3, type: 3}
       propertyPath: m_Materials.Array.data[0]

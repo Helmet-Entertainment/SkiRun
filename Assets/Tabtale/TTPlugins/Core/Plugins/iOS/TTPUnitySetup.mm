@@ -120,6 +120,14 @@ extern "C" {
         return NO;
     }
 
+    bool ttpShouldShowATTDisclaimer(){
+        TTPServiceManager *serviceManager = [TTPUnityServiceManager sharedInstance];
+        if(serviceManager != nil){
+            return [serviceManager shouldShowATTDisclaimer];
+        }
+        return false;
+    }
+
     bool ttpIsRemoteConfigExistAndEnabled()
     {
         TTPServiceManager *serviceManager = [TTPUnityServiceManager sharedInstance];

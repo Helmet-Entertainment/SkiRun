@@ -140,12 +140,11 @@ namespace Tabtale.TTPlugins
                         UnityEngine.Application.platform == UnityEngine.RuntimePlatform.IPhonePlayer)
                     {
 #if UNITY_ANDROID
-                        _impl = new AndroidImpl ();
+                        _impl = new AndroidImpl();
 #endif
 #if UNITY_IOS && !TTP_DEV_MODE
                         _impl = new IosImpl();
 #endif
-
                     }
                     else
                     {

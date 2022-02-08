@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using Google;
 using Tabtale.TTPlugins;
 using UnityEditor;
 using UnityEditor.Android;
@@ -101,6 +102,7 @@ public class CLIKConfiguration : EditorWindow
         public const string CONFIG_KEY_POPUPMGR_RESET_POPUP_TIMER_ON_RV = "resetPopupTimerOnRV";
         public const string CONFIG_KEY_POPUPMGR_RESET_POPUP_TIMER_ON_APP_OPEN = "resetPopupTimerOnAppOpen";
         public const string CONFIG_KEY_POPUPMGR_POPUP_INTERVALS_BY_SESSION = "popupsIntervalsBySession";
+        public const string CONFIG_KEY_POPUPMGR_POPUP_TIME_BETWEEN_RV_AND_INTER_BY_SESSION = "timeBetweenRvAndInterBySession";
         public const string CONFIG_KEY_POPUPMGR_GAME_TIME_TO_FIRST_POPUP_BY_SESSION = "gameTimeToFirstPopupBySession";
         public const string CONFIG_KEY_POPUPMGR_SESSION_TIME_TO_FIRST_POPUP_BY_SESSION = "sessionTimeToFirstPopupBySession";
         public const string CONFIG_KEY_POPUPMGR_LEVEL_TO_FIRST_POPUP = "levelToFirstPopup";
@@ -228,6 +230,7 @@ public class CLIKConfiguration : EditorWindow
         {
             GUILayout.Label ("Pop Up Manager", EditorStyles.boldLabel);
             _configuration.popUpMgrConfig.popupsInterval = EditorGUILayout.LongField("Time Between Popups (sec)", _configuration.popUpMgrConfig.popupsInterval);
+            _configuration.popUpMgrConfig.timeBetweenRvAndInter = EditorGUILayout.LongField("Time Between RV and Inter (sec)", _configuration.popUpMgrConfig.timeBetweenRvAndInter);
             _configuration.popUpMgrConfig.gameTimeToFirstPopup = EditorGUILayout.LongField("Game time to first popup (sec)", _configuration.popUpMgrConfig.gameTimeToFirstPopup);
             _configuration.popUpMgrConfig.sessionTimeToFirstPopup = EditorGUILayout.LongField("Session time to first popup (sec)", _configuration.popUpMgrConfig.sessionTimeToFirstPopup);
             _configuration.popUpMgrConfig.firstPopupAtSession = EditorGUILayout.LongField("First popup in session", _configuration.popUpMgrConfig.firstPopupAtSession);
@@ -481,6 +484,7 @@ public class CLIKConfiguration : EditorWindow
         public bool resetPopupTimerOnRV;
         public bool resetPopupTimerOnAppOpen;
         public long popupsInterval;
+        public long timeBetweenRvAndInter;
         private Dictionary<string,object> popupsIntervalsBySession;
         private Dictionary<string,object> gameTimeToFirstPopupBySession;
         private Dictionary<string,object> sessionTimeToFirstPopupBySession;
@@ -499,6 +503,7 @@ public class CLIKConfiguration : EditorWindow
                 {Constants.CONFIG_KEY_POPUPMGR_RESET_POPUP_TIMER_ON_APP_OPEN, resetPopupTimerOnAppOpen},
                 {Constants.CONFIG_KEY_POPUPMGR_INTERVALS, popupsInterval},
                 {Constants.CONFIG_KEY_POPUPMGR_POPUP_INTERVALS_BY_SESSION, new Dictionary<string,List<object>>(){ {"1", new List<object>(){popupsInterval}}}},
+                {Constants.CONFIG_KEY_POPUPMGR_POPUP_TIME_BETWEEN_RV_AND_INTER_BY_SESSION, new Dictionary<string,long>(){ {"1", timeBetweenRvAndInter}}},
                 {Constants.CONFIG_KEY_POPUPMGR_GAME_TIME_TO_FIRST_POPUP_BY_SESSION, new Dictionary<string,long>(){ {"1", gameTimeToFirstPopup}}},
                 {Constants.CONFIG_KEY_POPUPMGR_SESSION_TIME_TO_FIRST_POPUP_BY_SESSION, new Dictionary<string,long>(){ {"1", sessionTimeToFirstPopup}}},
                 {Constants.CONFIG_KEY_POPUPMGR_RESET_RV_BY_SESSION, new Dictionary<string,bool>(){ {"1", resetPopupTimerOnRV}}},
@@ -565,6 +570,7 @@ public class CLIKConfiguration : EditorWindow
                 {
                     included = dict.ContainsKey(Constants.CONFIG_KEY_INCLUDED) && (bool)dict[Constants.CONFIG_KEY_INCLUDED];
                     popupsInterval = GetInnerIntFromArray(dict, Constants.CONFIG_KEY_POPUPMGR_POPUP_INTERVALS_BY_SESSION);
+                    timeBetweenRvAndInter = GetInnerInt(dict, Constants.CONFIG_KEY_POPUPMGR_POPUP_TIME_BETWEEN_RV_AND_INTER_BY_SESSION);
                      gameTimeToFirstPopup = GetInnerInt(dict,
                          Constants.CONFIG_KEY_POPUPMGR_GAME_TIME_TO_FIRST_POPUP_BY_SESSION);
                      sessionTimeToFirstPopup = GetInnerInt(dict,
@@ -1127,6 +1133,7 @@ public class CLIKConfiguration : EditorWindow
 
     private static bool UnzipAnLoadConfiguration()
     {
+        IOSResolver.PodToolExecutionViaShellEnabled = false;
         var zipPath = EditorUtility.OpenFilePanel("Choose Configuration Zip", "", "zip");
         if (string.IsNullOrEmpty(zipPath))
         {
@@ -1331,6 +1338,10 @@ public class CLIKConfiguration : EditorWindow
         var store = isAndroid ? "google" : "apple";
         var url = (serverDomain ?? "http://dashboard.ttpsdk.info") + "/clik-packages/" + store + "/" + bundleId;
         string resStr = null;
+        if (!isAndroid)
+        {
+            IOSResolver.PodToolExecutionViaShellEnabled = false;
+        }
         if (TTPEditorUtils.DownloadStringToFile(url, "Assets/StreamingAssets/clik-packages.json", out resStr))
         {
             Debug.Log("BuilderDetermineIncludedServices:: download result: " + resStr ?? "null");
@@ -1437,6 +1448,7 @@ public class CLIKConfiguration : EditorWindow
                 "TT_Plugins_Banners_MoPub",
                 "TT_Plugins_CrossDevicePersistency",
                 "TT_Plugins_CrossPromotion",
+                "TT_Plugins_TTAnalyticsAgent",
                 "TT_Plugins_DeltaDnaAgent",
                 "TT_Plugins_FlurryAgent",
                 "TT_Plugins_NativeCampaign",

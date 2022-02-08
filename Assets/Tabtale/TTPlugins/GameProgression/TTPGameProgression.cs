@@ -15,6 +15,22 @@ namespace Tabtale.TTPlugins
     /// </summary>
     public class TTPGameProgression
     {
+        private static int currentLevel;
+        private const string PLAYER_PREFS_GAME_PROGRESSION_LEVEL = "ttpGameProgressionLevel";
+        private const string LEVEL_PARAMETER_KEY = "level";
+        private const string LEVEL_COMPLETE_EVENT_NAME = "levelComplete";
+
+        static void InternalInit()
+        {
+            currentLevel = PlayerPrefs.GetInt(PLAYER_PREFS_GAME_PROGRESSION_LEVEL, 0);
+        }
+
+        static void UpdateCurrentLevel(int level)
+        {
+            currentLevel = level;
+            PlayerPrefs.SetInt(PLAYER_PREFS_GAME_PROGRESSION_LEVEL, level);
+        }
+
         /// <summary>
         /// Log tutorial step
         /// </summary>
@@ -60,6 +76,23 @@ namespace Tabtale.TTPlugins
         }
 
         /// <summary>
+        /// Log AppsFlyer level completed event
+        /// </summary>
+        /// <param name="additionalParams">Other additional parameters</param>
+        static void AppsFlyerLevelComplete(Dictionary<string, object> additionalParams)
+        {
+#if TTP_APPSFLYER
+            if (additionalParams == null)
+            {
+                additionalParams = new Dictionary<string, object>();
+            }
+            additionalParams.Add(LEVEL_PARAMETER_KEY, currentLevel);
+
+            TTPAppsFlyer.LogEvent(LEVEL_COMPLETE_EVENT_NAME, additionalParams);
+#endif
+        }
+
+        /// <summary>
         /// Log mission is abandoned by user
         /// </summary>
         /// <param name="additionalParams">Other additional parameters</param>
@@ -86,6 +119,7 @@ namespace Tabtale.TTPlugins
         /// <param name="additionalParams">Other additional parameters</param>
         public static void LevelUp(string skinName, string levelUpName, int level, Dictionary<string, object> additionalParams)
         {
+            UpdateCurrentLevel(level);
             DDNAEvents.LevelUp(skinName, levelUpName, level, additionalParams);
         }
 
@@ -116,6 +150,8 @@ namespace Tabtale.TTPlugins
             public static void MissionComplete(Dictionary<string, object> additionalParams)
             {
                 Debug.LogWarning("DDNAEventsMissionComplete used from GameProgression plugin");
+
+                AppsFlyerLevelComplete(additionalParams);
                 CallAnalyticsByReflection("MissionComplete", new object[] { "missionCompleted", additionalParams });
             }
 
@@ -149,6 +185,8 @@ namespace Tabtale.TTPlugins
             public static void LevelUp(string skinName, string levelUpName, int level, Dictionary<string, object> additionalParams)
             {
                 Debug.LogWarning("DDNAEvents:LevelUp used from GameProgression plugin");
+                UpdateCurrentLevel(level);
+
                 CallAnalyticsByReflection("LevelUp", new object[] { skinName, levelUpName, level, additionalParams });
                 if (Impl != null)
                 {
@@ -178,6 +216,8 @@ namespace Tabtale.TTPlugins
             public static void MissionComplete(Dictionary<string, object> additionalParams)
             {
                 Debug.LogWarning("FirebaseEvents:MissionComplete:");
+
+                AppsFlyerLevelComplete(additionalParams);
                 CallAnalyticsByReflection("MissionCompleteFirebase", new object[] { "missionCompleted", additionalParams });
             }
 
@@ -204,6 +244,8 @@ namespace Tabtale.TTPlugins
             public static void LevelUp(int level, Dictionary<string, object> additionalParams)
             {
                 Debug.LogWarning("FirebaseEvents:LevelUp: level=" + level);
+                UpdateCurrentLevel(level);
+                
                 CallAnalyticsByReflection("LevelUpFirebase", new object[] { level, additionalParams });
                 if (Impl != null)
                 {
